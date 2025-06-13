@@ -19,15 +19,30 @@ class KorxonaListView(ListView):
 
     def get_queryset(self):
         qidiruv = self.request.GET.get('q', '')
+        sort = self.request.GET.get('sort', '')
+
+        queryset = Korxona.objects.all()
+
         if qidiruv:
-            return Korxona.objects.filter(
+            queryset = queryset.filter(
                 Q(nomi__icontains=qidiruv) | Q(faoliyat_turi__icontains=qidiruv)
             )
-        return Korxona.objects.all()
+
+        if sort == 'nomi':
+            queryset = queryset.order_by('nomi')
+        elif sort == 'sanasi':
+            queryset = queryset.order_by('ochilgan_sana')  # modelda bu maydon bo‘lishi kerak
+        elif sort == 'ishchilar':
+            queryset = queryset.order_by('-ishchilar_soni')  # modelda bu maydon bo‘lishi kerak
+        elif sort == 'yangi':
+            queryset = queryset.order_by('-id')  # eng so‘nggi qo‘shilganlar
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['qidiruv'] = self.request.GET.get('q', '')
+        context['sort'] = self.request.GET.get('sort', '')
         return context
 
 

@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Korxonalar{% endblock %}
+
 {% block content %}
 <h2>📋 Korxonalar ro‘yxati</h2>
 
-<form method="get" class="d-flex mb-3">
-    <input type="text" name="q" class="form-control me-2" placeholder="Nomi yoki faoliyat turi..." value="{{ qidiruv }}">
-    <button type="submit" class="btn btn-outline-success">Qidirish</button>
+<form method="get" class="row g-2 align-items-center mb-4">
+    <div class="col-md-6">
+        <input type="text" name="q" class="form-control" placeholder="Nomi yoki faoliyat turi..." value="{{ qidiruv }}">
+    </div>
+    <div class="col-md-3">
+        <select name="sort" class="form-select">
+            <option value="">Saralash</option>
+            <option value="nomi" {% if sort == 'nomi' %}selected{% endif %}>Alifbo (A-Z)</option>
+            <option value="-nomi" {% if sort == '-nomi' %}selected{% endif %}>Alifbo (Z-A)</option>
+            <option value="-created_at" {% if sort == '-created_at' %}selected{% endif %}>Eng yangi</option>
+            <option value="created_at" {% if sort == 'created_at' %}selected{% endif %}>Eng eski</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-success w-100">🔍 Qidirish</button>
+    </div>
 </form>
 
 <table class="table table-bordered table-striped">
@@ -29,7 +43,9 @@
             </td>
         </tr>
         {% empty %}
-        <tr><td colspan="4">Korxonalar topilmadi.</td></tr>
+        <tr>
+            <td colspan="4">Korxonalar topilmadi.</td>
+        </tr>
         {% endfor %}
     </tbody>
 </table>

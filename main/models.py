@@ -1,5 +1,6 @@
-# korxonalar/models.py
 from django.db import models
+from django.utils import timezone
+
 
 class Korxona(models.Model):
     nomi = models.CharField(max_length=200)
@@ -10,6 +11,7 @@ class Korxona(models.Model):
     ishchi_soni = models.IntegerField()
     qayta_ishlaydigan_materiallar = models.TextField()
     izoh = models.TextField(blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.nomi

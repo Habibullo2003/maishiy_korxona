@@ -1,8 +1,41 @@
 {% extends 'base.html' %}
 {% block title %}Aloqa{% endblock %}
+
 {% block content %}
-<h2>📞 Aloqa</h2>
-<p>Loyihani ishlab chiquvchi: <strong>Myname</strong></p>
-<p>Email: <a href="mailto:habibulloxayrullayev140@gmail.com.com">habibulloxayrullayev140@gmail.com</a></p>
-<p>Telegram: <a href="https://t.me/HXCR7">t.me/Habibullo</a></p>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg p-4 border-0 rounded-4 bg-light">
+            <h3 class="text-center mb-4">📞 Aloqa Ma’lumotlari</h3>
+            <p class="text-center text-muted">Savollar, takliflar yoki xatoliklar bo‘yicha biz bilan bog‘lanishingiz mumkin.</p>
+            <hr>
+            <div class="row text-center mt-4">
+                <div class="col-md-4 mb-3">
+                    <i class="bi bi-person-fill fs-1 text-success"></i>
+                    <h5 class="mt-2">Ismi</h5>
+                    <p><strong>Habibullo Xayrullayev</strong></p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <i class="bi bi-envelope-fill fs-1 text-primary"></i>
+                    <h5 class="mt-2">Email</h5>
+                    <p>
+                        <a href="mailto:habibulloxayrullayev140@gmail.com" class="text-decoration-none">
+                            habibulloxayrullayev140@gmail.com
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <i class="bi bi-telegram fs-1 text-info"></i>
+                    <h5 class="mt-2">Telegram</h5>
+                    <p>
+                        <a href="https://t.me/HXCR7" class="text-decoration-none">@HXCR7</a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="text-muted">Bu loyiha Django asosida ishlab chiqilgan va foydalanuvchilar uchun qulay interfeys yaratishga intiladi.</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

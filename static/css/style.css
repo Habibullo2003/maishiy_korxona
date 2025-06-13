@@ -71,15 +71,28 @@ h1, h2, h3 {
     font-weight: 700;
 }
 
+.card {
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 128, 0, 0.2);
+}
+a {
+    color: #198754;
+}
+a:hover {
+    color: #14532d;
+    text-decoration: underline;
+}
+
 /* Footer */
 footer {
     background-color: #2e7d32;
     color: white;
     text-align: center;
     padding: 20px 0;
-    position: fixed;
     width: 100%;
-    bottom: 0;
 }
 
 /* Animation */
