@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Korxonalar{% endblock %}
+{% block content %}
+<h2>📋 Korxonalar ro‘yxati</h2>
+
+<form method="get" class="d-flex mb-3">
+    <input type="text" name="q" class="form-control me-2" placeholder="Nomi yoki faoliyat turi..." value="{{ qidiruv }}">
+    <button type="submit" class="btn btn-outline-success">Qidirish</button>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-success">
+        <tr>
+            <th>#</th>
+            <th>Nomi</th>
+            <th>Faoliyat</th>
+            <th>Amallar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for korxona in korxonalar %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ korxona.nomi }}</td>
+            <td>{{ korxona.faoliyat_turi }}</td>
+            <td>
+                <a href="{% url 'korxona_edit' korxona.pk %}" class="btn btn-sm btn-primary">✏️</a>
+                <a href="{% url 'korxona_delete' korxona.pk %}" class="btn btn-sm btn-danger">🗑️</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">Korxonalar topilmadi.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

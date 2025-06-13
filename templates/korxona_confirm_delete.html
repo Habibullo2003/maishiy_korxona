@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Korxonani o‘chirish{% endblock %}
+{% block content %}
+<h2>🗑️ Korxonani o‘chirish</h2>
+<p><strong>{{ korxona.nomi }}</strong> nomli korxonani o‘chirilsinmi?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Ha, o‘chir</button>
+    <a href="{% url 'korxona_list' %}" class="btn btn-secondary">Yo‘q, ortga</a>
+</form>
+{% endblock %}

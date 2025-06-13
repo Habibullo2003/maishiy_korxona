@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Bosh sahifa{% endblock %}
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="display-5">♻️ Maishiy chiqindilarni qayta ishlovchi korxonalar tizimi</h1>
+    <p class="lead">Bu axborot tizimi korxonalarni ro‘yxatga olish va boshqarish uchun mo‘ljallangan.</p>
+    <a href="{% url 'korxona_list' %}" class="btn btn-success btn-lg mt-3">Korxonalarni ko‘rish</a>
+</div>
+{% endblock %}
