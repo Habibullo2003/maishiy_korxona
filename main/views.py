@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from .models import Korxona
 from .forms import KorxonaForm
 from django.db.models import Q
+from django.db.models import Count
+import json
 
 
 # Bosh sahifa
@@ -67,6 +69,26 @@ class KorxonaDeleteView(DeleteView):
     model = Korxona
     template_name = 'korxona_confirm_delete.html'
     success_url = reverse_lazy('korxona_list')
+
+
+class KorxonaStatistikaView(TemplateView):
+    template_name = 'korxona_statistika.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        stat = (
+            Korxona.objects.values('faoliyat_turi')
+            .annotate(sanoq=Count('id'))
+            .order_by('-sanoq')
+        )
+
+        # Diagramma uchun
+        context['labels'] = json.dumps([item['faoliyat_turi'] for item in stat])
+        context['values'] = json.dumps([item['sanoq'] for item in stat])
+
+        # Jadval uchun
+        context['stat_data'] = stat
+        return context
 
 
 # Aloqa sahifasi

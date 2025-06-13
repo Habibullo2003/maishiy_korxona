@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Statistika{% endblock %}
+{% block content %}
+<h2 class="mb-4">📊 Korxonalar statistikasi</h2>
+
+<canvas id="faoliyatChart"
+        data-labels='{{ labels|safe }}'
+        data-values='{{ values|safe }}'
+        width="600"
+        height="300">
+</canvas>
+
+<!-- Jadval -->
+<div class="card p-4 shadow-sm">
+    <h5 class="mb-3">📋 Korxona faoliyat turlari bo‘yicha jadval</h5>
+    <table class="table table-bordered table-striped">
+        <thead class="table-success">
+        <tr>
+            <th>#</th>
+            <th>Faoliyat turi</th>
+            <th>Korxonalar soni</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in stat_data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ item.faoliyat_turi }}</td>
+            <td>{{ item.sanoq }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Ma’lumot topilmadi.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Local custom JS -->
+<script src="{% static 'js/chart.js' %}"></script>
+
+{% endblock %}
